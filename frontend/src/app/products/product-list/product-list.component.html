@@ -21,6 +21,12 @@
       <td class="p-2 border">{{ product.sold }}</td>
       <td class="p-2 border">
         <button
+          class="ml-2 bg-yellow-600 text-white px-2 py-1 rounded hover:bg-yellow-700"
+          (click)="editProduct(product.id)"
+        >
+          Edit
+        </button>
+        <button
           class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
           (click)="deleteProduct(product.id)"
         >
