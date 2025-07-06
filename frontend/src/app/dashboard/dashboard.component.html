@@ -1,1 +1,10 @@
-<p>dashboard works!</p>
+<h2 class="text-lg font-bold mb-4">Top 3 Best-Selling Products</h2>
+
+<ul class="space-y-2">
+  @for (product of topSellers; track product.id) {
+  <li class="border p-3 rounded bg-gray-50">
+    <div class="font-semibold">{{ product.name }}</div>
+    <div class="text-sm text-gray-700">Sold: {{ product.sold }}</div>
+  </li>
+  }
+</ul>
