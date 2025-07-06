@@ -17,4 +17,9 @@ export class ProductListComponent {
   ngOnInit(): void {
     this.products = this.productService.getAll();
   }
+
+  deleteProduct(id: number): void {
+    this.productService.delete(id);
+    this.products = this.productService.getAll();
+  }
 }
