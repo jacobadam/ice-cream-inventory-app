@@ -1,5 +1,6 @@
 using backend.Data;
 using Microsoft.EntityFrameworkCore;
+using backend.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,5 +30,13 @@ app.MapGet("/api/products", async (IceCreamDbContext db) =>
     var products = await db.Products.ToListAsync();
     return Results.Ok(products);
 });
+
+app.MapPost("/api/products", async (IceCreamDbContext db, Product product) =>
+{
+    db.Products.Add(product);
+    await db.SaveChangesAsync();
+    return Results.Created($"/api/products/{product.Id}", product);
+});
+
 
 app.Run();
