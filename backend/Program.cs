@@ -2,6 +2,7 @@ using backend.Data;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using System.Linq; 
+using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,19 @@ app.MapGet("/api/products", async (IceCreamDbContext db) =>
 
 app.MapPost("/api/products", async (IceCreamDbContext db, Product product) =>
 {
+    var results = new List<ValidationResult>();
+    var context = new ValidationContext(product);
+    if (!Validator.TryValidateObject(product, context, results, true))
+    {
+        var errors = results
+            .GroupBy(r => r.MemberNames.FirstOrDefault() ?? "")
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(r => r.ErrorMessage ?? "").ToArray()
+            );
+        return Results.ValidationProblem(errors);
+    }
+
     db.Products.Add(product);
     await db.SaveChangesAsync();
     return Results.Created($"/api/products/{product.Id}", product);
@@ -44,6 +58,19 @@ app.MapPost("/api/products", async (IceCreamDbContext db, Product product) =>
 
 app.MapPut("/api/products/{id}", async (int id, IceCreamDbContext db, Product updatedProduct) =>
 {
+    var results = new List<ValidationResult>();
+    var context = new ValidationContext(updatedProduct);
+    if (!Validator.TryValidateObject(updatedProduct, context, results, true))
+    {
+        var errors = results
+            .GroupBy(r => r.MemberNames.FirstOrDefault() ?? "")
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(r => r.ErrorMessage ?? "").ToArray()
+            );
+        return Results.ValidationProblem(errors);
+    }
+
     var product = await db.Products.FindAsync(id);
     if (product == null) return Results.NotFound();
 
