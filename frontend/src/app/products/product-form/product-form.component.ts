@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -23,4 +24,15 @@ export class ProductFormComponent {
     stock: [0, [Validators.required, Validators.min(0)]],
     sold: [0, [Validators.required, Validators.min(0)]],
   });
+
+  @Output() formSubmit = new EventEmitter<void>();
+
+  private productService = inject(ProductService);
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      this.productService.add(this.form.value);
+      this.formSubmit.emit();
+    }
+  }
 }
