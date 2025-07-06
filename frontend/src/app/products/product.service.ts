@@ -71,4 +71,9 @@ export class ProductService {
   add(product: Product): void {
     this.products.push(product);
   }
+
+  update(id: number, updated: Product): void {
+    const index = this.products.findIndex((p) => p.id === id);
+    if (index > -1) this.products[index] = updated;
+  }
 }
