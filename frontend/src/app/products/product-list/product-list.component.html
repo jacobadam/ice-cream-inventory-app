@@ -26,10 +26,57 @@
         {{ product.name }}
         }
       </td>
-      <td class="p-2 border">{{ product.flavor }}</td>
-      <td class="p-2 border">{{ product.price }}</td>
-      <td class="p-2 border">{{ product.stock }}</td>
-      <td class="p-2 border">{{ product.sold }}</td>
+      <td class="p-2 border">
+        @if (editingProductId === product.id) {
+        <input
+          type="text"
+          class="w-full border p-1 rounded"
+          [(ngModel)]="product.flavor"
+          name="flavor-{{ product.id }}"
+        />
+        } @else {
+        {{ product.flavor }}
+        }
+      </td>
+      <td class="p-2 border">
+        @if (editingProductId === product.id) {
+        <input
+          type="number"
+          class="w-full border p-1 rounded"
+          [(ngModel)]="product.price"
+          name="price-{{ product.id }}"
+          min="0"
+        />
+        } @else {
+        {{ product.price }}
+        }
+      </td>
+      <td class="p-2 border">
+        @if (editingProductId === product.id) {
+        <input
+          type="number"
+          class="w-full border p-1 rounded"
+          [(ngModel)]="product.stock"
+          name="stock-{{ product.id }}"
+          min="0"
+        />
+        } @else {
+        {{ product.stock }}
+        }
+      </td>
+      <td class="p-2 border">
+        @if (editingProductId === product.id) {
+        <input
+          type="number"
+          class="w-full border p-1 rounded"
+          [(ngModel)]="product.sold"
+          name="sold-{{ product.id }}"
+          min="0"
+        />
+        } @else {
+        {{ product.sold }}
+        }
+      </td>
       <td class="p-2 border">
         <button
           class="ml-2 bg-yellow-600 text-white px-2 py-1 rounded hover:bg-yellow-700"
