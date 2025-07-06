@@ -16,18 +16,4 @@ export const routes: Routes = [
         (m) => m.ProductListComponent
       ),
   },
-  {
-    path: 'products/new',
-    loadComponent: () =>
-      import('./products/product-form/product-form.component').then(
-        (m) => m.ProductFormComponent
-      ),
-  },
-  {
-    path: 'products/edit/:id',
-    loadComponent: () =>
-      import('./products/product-form/product-form.component').then(
-        (m) => m.ProductFormComponent
-      ),
-  },
 ];
