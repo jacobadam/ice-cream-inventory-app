@@ -67,4 +67,8 @@ export class ProductService {
   getAll(): Product[] {
     return this.products;
   }
+
+  add(product: Product): void {
+    this.products.push(product);
+  }
 }
