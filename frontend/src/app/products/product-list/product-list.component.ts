@@ -25,6 +25,8 @@ export class ProductListComponent implements OnInit {
       const editId = params.get('edit');
       if (editId) {
         this.editingProductId = Number(editId);
+
+        history.replaceState(null, '', '/products');
       }
     });
   }
