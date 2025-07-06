@@ -26,6 +26,16 @@ export class ProductListComponent implements OnInit {
     this.editingProductId = id;
   }
 
+  saveEdit(product: Product): void {
+    this.productService.update(product.id, product);
+    this.editingProductId = null;
+    this.products = this.productService.getAll();
+  }
+
+  cancelEdit(): void {
+    this.editingProductId = null;
+  }
+
   deleteProduct(id: number): void {
     this.productService.delete(id);
     this.products = this.productService.getAll();
