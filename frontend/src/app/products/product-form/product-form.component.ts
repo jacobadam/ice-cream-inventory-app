@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
@@ -9,4 +14,13 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class ProductFormComponent {
   private fb = inject(FormBuilder);
+
+  form: FormGroup = this.fb.group({
+    id: [Date.now()],
+    name: ['', Validators.required],
+    flavor: ['', Validators.required],
+    price: [0, [Validators.required, Validators.min(0)]],
+    stock: [0, [Validators.required, Validators.min(0)]],
+    sold: [0, [Validators.required, Validators.min(0)]],
+  });
 }
