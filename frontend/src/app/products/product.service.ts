@@ -63,4 +63,8 @@ export class ProductService {
       sold: 32,
     },
   ];
+
+  getAll(): Product[] {
+    return this.products;
+  }
 }
