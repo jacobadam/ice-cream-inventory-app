@@ -11,9 +11,15 @@ import { Product } from '../products/product.model';
 })
 export class DashboardComponent implements OnInit {
   private productService = inject(ProductService);
+
   products: Product[] = [];
+  topSellers: Product[] = [];
 
   ngOnInit(): void {
     this.products = this.productService.getAll();
+
+    this.topSellers = [...this.products]
+      .sort((a, b) => b.sold - a.sold)
+      .slice(0, 3);
   }
 }
