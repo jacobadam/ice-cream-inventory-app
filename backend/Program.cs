@@ -57,4 +57,15 @@ app.MapPut("/api/products/{id}", async (int id, IceCreamDbContext db, Product up
     return Results.NoContent();
 });
 
+app.MapDelete("/api/products/{id}", async (int id, IceCreamDbContext db) =>
+{
+    var product = await db.Products.FindAsync(id);
+    if (product == null) return Results.NotFound();
+
+    db.Products.Remove(product);
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+});
+
+
 app.Run();
