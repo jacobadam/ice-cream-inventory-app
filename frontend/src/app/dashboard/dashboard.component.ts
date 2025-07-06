@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../products/product.service';
 import { Product } from '../products/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { Product } from '../products/product.model';
 })
 export class DashboardComponent implements OnInit {
   private productService = inject(ProductService);
+  private router = inject(Router);
 
   products: Product[] = [];
   topSellers: Product[] = [];
@@ -24,5 +26,9 @@ export class DashboardComponent implements OnInit {
       .slice(0, 3);
 
     this.lowStock = this.products.filter((p) => p.stock < 5);
+  }
+
+  restockProduct(id: number): void {
+    this.router.navigate(['/products'], { queryParams: { edit: id } });
   }
 }

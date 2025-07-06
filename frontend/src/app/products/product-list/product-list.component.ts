@@ -3,6 +3,7 @@ import { ProductService } from '../product.service';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { Product } from '../product.model';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -15,9 +16,17 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
   private productService = inject(ProductService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.products = this.productService.getAll();
+
+    this.route.queryParamMap.subscribe((params) => {
+      const editId = params.get('edit');
+      if (editId) {
+        this.editingProductId = Number(editId);
+      }
+    });
   }
 
   editingProductId: number | null = null;
