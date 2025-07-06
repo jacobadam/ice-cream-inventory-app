@@ -76,4 +76,8 @@ export class ProductService {
     const index = this.products.findIndex((p) => p.id === id);
     if (index > -1) this.products[index] = updated;
   }
+
+  delete(id: number): void {
+    this.products = this.products.filter((p) => p.id !== id);
+  }
 }
