@@ -8,3 +8,20 @@
   </li>
   }
 </ul>
+
+<h2 class="text-lg font-bold mt-6 mb-4">Low Stock Alerts</h2>
+
+@if (lowStock.length > 0) {
+<ul class="space-y-2">
+  @for (product of lowStock; track product.id) {
+  <li class="border p-3 rounded bg-red-50 border-red-300">
+    <div class="font-semibold">{{ product.name }}</div>
+    <div class="text-sm text-red-700">
+      Only {{ product.stock }} left in stock
+    </div>
+  </li>
+  }
+</ul>
+} @else {
+<p class="text-sm text-green-700">All products sufficiently stocked.</p>
+}

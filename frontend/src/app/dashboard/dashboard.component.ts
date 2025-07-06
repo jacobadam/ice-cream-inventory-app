@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   products: Product[] = [];
   topSellers: Product[] = [];
+  lowStock: Product[] = [];
 
   ngOnInit(): void {
     this.products = this.productService.getAll();
@@ -21,5 +22,7 @@ export class DashboardComponent implements OnInit {
     this.topSellers = [...this.products]
       .sort((a, b) => b.sold - a.sold)
       .slice(0, 3);
+
+    this.lowStock = this.products.filter((p) => p.stock < 5);
   }
 }
