@@ -14,7 +14,18 @@
   <tbody>
     @for (product of products; track product.id) {
     <tr>
-      <td class="p-2 border">{{ product.name }}</td>
+      <td class="p-2 border">
+        @if (editingProductId === product.id) {
+        <input
+          type="text"
+          class="w-full border p-1 rounded"
+          [(ngModel)]="product.name"
+          name="name-{{ product.id }}"
+        />
+        } @else {
+        {{ product.name }}
+        }
+      </td>
       <td class="p-2 border">{{ product.flavor }}</td>
       <td class="p-2 border">{{ product.price }}</td>
       <td class="p-2 border">{{ product.stock }}</td>

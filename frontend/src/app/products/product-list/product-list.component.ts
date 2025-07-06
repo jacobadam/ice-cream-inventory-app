@@ -2,11 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { Product } from '../product.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductModalComponent],
+  imports: [ProductModalComponent, FormsModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
