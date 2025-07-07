@@ -1,4 +1,4 @@
-<div class="group" [ngClass]="isOpen ? 'is-open backdrop' : ''">
+<div class="group" [ngClass]="isOpen ? 'is-open' : ''">
   <aside
     class="min-h-screen flex flex-col w-64 lg:group-[.is-open]:w-64 lg:group-[.is-open]:translate-x-0 group-[.is-open]:-translate-x-full lg:translate-x-0 absolute left-0 lg:fixed z-10 lg:w-16 transition-all duration-500 ease-in-out border-r border-gray-200 bg-blue-50"
   >
@@ -25,7 +25,7 @@
   <div
     class="h-full overflow-y-auto ml-auto transition-all duration-500 w-full lg:pl-16 group-[.is-open]:lg:pl-64"
   >
-    <div class="flex lg:hidden items-center gap-3 pb-8 bg-blue-50">
+    <div class="flex lg:hidden items-center gap-3 bg-blue-50">
       <button
         (click)="toggleSidebar()"
         class="w-6 h-6 m-4 rounded-full flex items-center justify-center"
