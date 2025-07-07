@@ -2,13 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../products/product.service';
 import { Product } from '../products/product.model';
 import { Router } from '@angular/router';
+import { CardComponent } from '../ui/card/card.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
   private productService = inject(ProductService);

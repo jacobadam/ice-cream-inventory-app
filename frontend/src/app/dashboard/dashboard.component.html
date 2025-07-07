@@ -1,33 +1,60 @@
-<h2 class="text-lg font-bold mb-4">Top 3 Best-Selling Products</h2>
-
-<ul class="space-y-2">
-  @for (product of topSellers; track product.id) {
-  <li class="border p-3 rounded bg-gray-50">
-    <div class="font-semibold">{{ product.name }}</div>
-    <div class="text-sm text-gray-700">Sold: {{ product.sold }}</div>
-  </li>
-  }
-</ul>
-
-<h2 class="text-lg font-bold mt-6 mb-4">Low Stock Alerts</h2>
-
-@if (lowStock.length > 0) {
-<ul class="space-y-2">
-  @for (product of lowStock; track product.id) {
-  <li class="border p-3 rounded bg-red-50 border-red-300">
-    <div class="font-semibold">{{ product.name }}</div>
-    <div class="text-sm text-red-700">
-      Only {{ product.stock }} left in stock
-    </div>
-    <button
-      class="mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-      (click)="restockProduct(product.id)"
+<div class="m-4 p-6 bg-white rounded-2xl">
+  <div class="border border-gray-200 rounded-xl">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 items-stretch"
     >
-      Restock
-    </button>
-  </li>
-  }
-</ul>
-} @else {
-<p class="text-sm text-green-700">All products sufficiently stocked.</p>
-}
+      <app-card
+        title="Top 3 Best-Selling Products"
+        class="flex flex-col h-full"
+      >
+        <ul class="space-y-3">
+          @for (product of topSellers; track product.id) {
+          <li class="bg-gray-50 border border-gray-200 p-3 rounded">
+            <div class="font-medium text-gray-800">{{ product.name }}</div>
+            <div class="text-sm text-gray-600">Sold: {{ product.sold }}</div>
+          </li>
+          }
+        </ul>
+      </app-card>
+
+      <app-card title="Low Stock Alerts" class="flex flex-col h-full">
+        @if (lowStock.length > 0) {
+        <ul class="space-y-3">
+          @for (product of lowStock; track product.id) {
+          <li
+            class="flex justify-between items-center bg-red-50 border border-red-200 p-3 rounded"
+          >
+            <div class="space-y-1">
+              <div class="font-medium text-red-800">{{ product.name }}</div>
+              <div class="text-sm text-red-600">
+                Only {{ product.stock }} left in stock
+              </div>
+            </div>
+            <button
+              class="bg-blue-600 text-white text-sm px-3 py-1 rounded hover:bg-blue-700"
+              (click)="restockProduct(product.id)"
+            >
+              Restock
+            </button>
+          </li>
+          }
+        </ul>
+        } @else {
+        <p class="text-sm text-green-700">All products sufficiently stocked.</p>
+        }
+      </app-card>
+
+      <app-card class="flex flex-col h-full">
+        <div class="flex items-center justify-center text-gray-400 h-full">
+          <span class="text-sm">[ Chart Placeholder 1 ]</span>
+        </div>
+      </app-card>
+
+      <app-card class="flex flex-col h-full">
+        <div class="flex items-center justify-center text-gray-400 h-full">
+          <span class="text-sm">[ Chart Placeholder 2 ]</span>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
