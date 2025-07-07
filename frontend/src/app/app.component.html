@@ -1,1 +1,39 @@
-<router-outlet></router-outlet>
+<div class="group" [ngClass]="isOpen ? 'is-open backdrop' : ''">
+  <aside
+    class="min-h-screen flex flex-col w-64 lg:group-[.is-open]:w-64 lg:group-[.is-open]:translate-x-0 group-[.is-open]:-translate-x-full lg:translate-x-0 absolute left-0 lg:fixed z-10 lg:w-16 transition-all duration-500 ease-in-out border-r border-gray-200 bg-blue-50"
+  >
+    <div
+      class="flex items-center justify-between flex-shrink-0 gap-4 mx-4 py-6 border-b border-gray-200 dark:border-gray-800"
+    >
+      <a routerLink="/">
+        <img src="/home-icon.svg" alt="home" class="w-6 h-6" />
+      </a>
+      <button
+        (click)="toggleSidebar()"
+        class="absolute right-3 lg:-right-3 w-6 h-6 rounded-full flex items-center justify-center bg-black"
+      >
+        <img
+          [src]="isOpen ? '/toggle-close-icon.svg' : '/toggle-open-icon.svg'"
+          [alt]="isOpen ? 'Close sidebar' : 'Open sidebar'"
+          alt="close"
+          class="w-6 h-6 invert"
+        />
+      </button>
+    </div>
+  </aside>
+
+  <div
+    class="h-full overflow-y-auto ml-auto transition-all duration-500 w-full lg:pl-16 group-[.is-open]:lg:pl-64"
+  >
+    <div class="flex lg:hidden items-center gap-3 pb-8 bg-blue-50">
+      <button
+        (click)="toggleSidebar()"
+        class="w-6 h-6 m-4 rounded-full flex items-center justify-center"
+      >
+        <img src="/menu-icon.svg" alt="menu" class="w-6 h-6" />
+      </button>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
