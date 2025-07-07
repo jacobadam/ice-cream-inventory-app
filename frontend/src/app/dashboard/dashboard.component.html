@@ -54,15 +54,23 @@
       </app-card>
 
       <app-card class="flex flex-col h-full">
-        <div class="flex items-center justify-center text-gray-400 h-full">
-          <span class="text-sm">[ Chart Placeholder 1 ]</span>
-        </div>
+        <canvas
+          baseChart
+          [data]="pieData"
+          [type]="pieType"
+          [options]="pieOptions"
+          class="flex-1"
+        ></canvas>
       </app-card>
 
       <app-card class="flex flex-col h-full">
-        <div class="flex items-center justify-center text-gray-400 h-full">
-          <span class="text-sm">[ Chart Placeholder 2 ]</span>
-        </div>
+        <canvas
+          baseChart
+          [data]="barData"
+          [type]="barType"
+          [options]="barOptions"
+          class="flex-1"
+        ></canvas>
       </app-card>
     </div>
   </div>
