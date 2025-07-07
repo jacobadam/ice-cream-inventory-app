@@ -1,10 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Product } from './product.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:5093/api/products';
+
   private products: Product[] = [
     {
       id: 1,
@@ -64,20 +69,19 @@ export class ProductService {
     },
   ];
 
-  getAll(): Product[] {
-    return this.products;
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
-  add(product: Product): void {
-    this.products.push(product);
+  add(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, product);
   }
 
-  update(id: number, updated: Product): void {
-    const index = this.products.findIndex((p) => p.id === id);
-    if (index > -1) this.products[index] = updated;
+  update(product: Product): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${product.id}`, product);
   }
 
-  delete(id: number): void {
-    this.products = this.products.filter((p) => p.id !== id);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
