@@ -14,33 +14,39 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  editingProductId: number | null = null;
+  showModal = false;
 
   private productService = inject(ProductService);
   private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.products = this.productService.getAll();
+    this.loadProducts();
 
     this.route.queryParamMap.subscribe((params) => {
       const editId = params.get('edit');
       if (editId) {
         this.editingProductId = Number(editId);
-
         history.replaceState(null, '', '/products');
       }
     });
   }
 
-  editingProductId: number | null = null;
+  private loadProducts(): void {
+    this.productService.getAll().subscribe((products) => {
+      this.products = products;
+    });
+  }
 
   editProduct(id: number): void {
     this.editingProductId = id;
   }
 
   saveEdit(product: Product): void {
-    this.productService.update(product.id, product);
-    this.editingProductId = null;
-    this.products = this.productService.getAll();
+    this.productService.update(product).subscribe(() => {
+      this.editingProductId = null;
+      this.loadProducts();
+    });
   }
 
   cancelEdit(): void {
@@ -48,9 +54,8 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number): void {
-    this.productService.delete(id);
-    this.products = this.productService.getAll();
+    this.productService.delete(id).subscribe(() => {
+      this.loadProducts();
+    });
   }
-
-  showModal = false;
 }
