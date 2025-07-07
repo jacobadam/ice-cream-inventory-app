@@ -19,13 +19,13 @@ export class DashboardComponent implements OnInit {
   lowStock: Product[] = [];
 
   ngOnInit(): void {
-    this.products = this.productService.getAll();
-
-    this.topSellers = [...this.products]
-      .sort((a, b) => b.sold - a.sold)
-      .slice(0, 3);
-
-    this.lowStock = this.products.filter((p) => p.stock < 5);
+    this.productService.getAll().subscribe((products) => {
+      this.products = products;
+      this.topSellers = [...products]
+        .sort((a, b) => b.sold - a.sold)
+        .slice(0, 3);
+      this.lowStock = products.filter((p) => p.stock < 5);
+    });
   }
 
   restockProduct(id: number): void {
