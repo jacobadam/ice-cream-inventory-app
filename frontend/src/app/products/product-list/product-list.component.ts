@@ -58,4 +58,9 @@ export class ProductListComponent implements OnInit {
       this.loadProducts();
     });
   }
+
+  onFormSubmit(): void {
+    this.loadProducts();
+    this.showModal = false;
+  }
 }
