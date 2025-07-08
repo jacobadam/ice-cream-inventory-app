@@ -11,7 +11,7 @@ The frontend is an Angular 20 application providing a user interface for managin
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) & npm (v18 or later)
+- [Node.js](https://nodejs.org/) & npm (v20.19+ or v22.12+)
 - [Angular CLI](https://angular.io/cli) v20.x
 
 ## Setup & Run
