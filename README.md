@@ -4,115 +4,77 @@ A full-stack application for managing ice cream products, built with .NET 9 WebA
 
 ---
 
+## Project Structure
+
+```
+ice-cream-inventory-app/
+├── backend/
+│   └── README.md
+├── frontend/
+│   └── README.md
+└── README.md
+```
+
+---
+
 ## Prerequisites
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
-- [Node.js & npm](https://nodejs.org/)
-- [Angular CLI](https://angular.io/cli) v20
+- [Node.js](https://nodejs.org/) & npm (v22 or later)
+- [Angular CLI](https://angular.io/cli) v20.x
 - PostgreSQL v12 or later
 
   - Ensure the `psql`, `createdb`, and `dropdb` CLI tools are on your PATH.
 
 ---
 
-## Backend Setup
+## Setup
 
-1. **Clone the repo**
+### Backend
 
-   ```bash
-   git clone <your-repo-url>
-   cd ice-cream-inventory-app/backend
-   ```
+For detailed backend setup, migrations, and testing, see [backend/README.md](backend/README.md).
 
-2. **Create the database**
+### Frontend
 
-   ```bash
-   createdb icecream
-   ```
-
-3. **Configure connection string**
-
-   ```bash
-   export ICECREAM_DB="Host=localhost;Database=icecream;Username=<your-db-username>;Password=<your-db-password>"
-
-   ```
-
-4. **Apply EF Core migrations**
-
-   ```bash
-   dotnet build
-   dotnet ef database update
-   ```
-
-5. **Run the API**
-
-   ```bash
-   dotnet run
-   ```
-
-   The API will listen on:
-
-   - HTTP: `http://localhost:5000`
-   - HTTPS: `https://localhost:5001` (redirect only in non-Development)
+For detailed frontend setup, build, and deployment, see [frontend/README.md](frontend/README.md).
 
 ---
 
-## Frontend Setup
+## Usage & Features
 
-1. **Open a new terminal**
-
-   ```bash
-   cd ../frontend
-   ```
-
-2. **Install dependencies & start**
-
-   ```bash
-   npm install
-   npm start
-   ```
-
-   The Angular app will run at `http://localhost:4200`.
+- Create, read, update, and delete ice cream products
+- Dashboard with top-selling products and low-stock alerts
+- Modal form for adding products
+- Error handling and validation
 
 ---
 
-## Endpoint Summary
+## Scripts
 
-| Method | URL                  | Description                     |
-| ------ | -------------------- | ------------------------------- |
-| GET    | `/api/products`      | List all products               |
-| GET    | `/api/products/{id}` | Get one product by its ID       |
-| POST   | `/api/products`      | Create a new product            |
-| PUT    | `/api/products/{id}` | Update an existing product      |
-| DELETE | `/api/products/{id}` | Delete a product                |
-| GET    | `/api/error`         | Test global error handler (500) |
+| Command                     | Description                            |
+| --------------------------- | -------------------------------------- |
+| `dotnet build`              | Build the backend project              |
+| `dotnet run`                | Run the backend API                    |
+| `dotnet ef database update` | Apply Entity Framework Core migrations |
+| `npm install`               | Install frontend dependencies          |
+| `npm start`                 | Run the Angular development server     |
 
 ---
 
-## API test instructions
+## Troubleshooting
 
-```bash
-# 1) List all products
-curl -i http://localhost:5000/api/products
+- **CORS errors**: Verify the API URL in `frontend/src/environments/environment.ts` matches `https://localhost:5001`.
+- **Port conflicts**: Update `applicationUrl` in `backend/Properties/launchSettings.json` or adjust Angular's `proxy.conf.json`.
+- **Database connection issues**: Ensure the `ICECREAM_DB` environment variable is correctly set and the database is created.
 
-# 2) Test validation error
-curl -i -X POST http://localhost:5000/api/products \
-  -H "Content-Type: application/json" \
-  -d '{}'
+---
 
-# 3) Add Product
-curl -i -X POST http://localhost:5000/api/products \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Vanilla","flavor":"Vanilla","price":3.5,"stock":10,"sold":0}'
+## Contributing
 
-# 4) Update Product
-curl -i -X PUT http://localhost:5000/api/products/1 \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Mint","flavor":"Mint Chocolate","price":4.0,"stock":5,"sold":2}'
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-# 5) Delete Product
-curl -i -X DELETE http://localhost:5000/api/products/1
+---
 
-# 6) Trigger 500 error
-curl -i http://localhost:5000/api/error
-```
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
