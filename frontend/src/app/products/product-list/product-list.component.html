@@ -1,5 +1,11 @@
 <div class="min-h-screen flex items-center justify-center p-6">
   <div class="w-full max-w-7xl m-4 p-6 rounded-2xl">
+    @if (errorMessage) {
+    <div class="mb-4 px-4 py-2 bg-red-100 text-red-700 rounded">
+      {{ errorMessage }}
+    </div>
+    }
+
     <table
       class="min-w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
     >
