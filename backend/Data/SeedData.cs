@@ -1,20 +1,20 @@
 using System;
 using System.Linq;
-using IceCreamInventoryApp.Models;
+using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IceCreamInventoryApp.Data
+namespace backend.Data
 {
     public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using var context = new AppDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
+            using var context = new IceCreamDbContext(
+                serviceProvider.GetRequiredService<DbContextOptions<IceCreamDbContext>>());
 
             if (context.Products.Any())
-                return; 
+                return;
 
             context.Products.AddRange(
                 new Product { Name = "Vanilla Bean", Flavor = "Vanilla", Price = 3.50M, Stock = 100, Sold = 25 },
