@@ -1,6 +1,6 @@
 <div class="group" [ngClass]="isOpen ? 'is-open' : ''">
   <aside
-    class="min-h-screen flex flex-col w-64 lg:group-[.is-open]:w-64 lg:group-[.is-open]:translate-x-0 group-[.is-open]:-translate-x-full lg:translate-x-0 absolute left-0 lg:fixed z-10 lg:w-16 transition-all duration-500 ease-in-out border-r border-gray-200 bg-blue-100"
+    class="transform -translate-x-full min-h-screen flex flex-col w-64 lg:translate-x-0 lg:group-[.is-open]:w-64 lg:group-[.is-open]:translate-x-0 group-[.is-open]:translate-x-0 absolute left-0 lg:fixed z-10 lg:w-16 transition-all duration-500 ease-in-out border-r border-gray-200 bg-blue-100"
   >
     <div
       class="flex items-center justify-between flex-shrink-0 gap-4 mx-4 py-6 border-b border-gray-200"
@@ -15,7 +15,6 @@
         <img
           [src]="isOpen ? '/toggle-close-icon.svg' : '/toggle-open-icon.svg'"
           [alt]="isOpen ? 'Close sidebar' : 'Open sidebar'"
-          alt="close"
           class="w-6 h-6 invert"
         />
       </button>

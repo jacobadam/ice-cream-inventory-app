@@ -14,6 +14,10 @@ export class AppComponent {
 
   isOpen = true;
 
+  ngOnInit() {
+    this.isOpen = window.innerWidth >= 1024;
+  }
+
   toggleSidebar(): void {
     this.isOpen = !this.isOpen;
   }
