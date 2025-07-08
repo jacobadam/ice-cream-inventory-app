@@ -1,26 +1,26 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, CommonModule],
   standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ice-cream-inventory';
-
   isOpen = true;
 
-  ngOnInit() {
-    this.isOpen = window.innerWidth >= 1024;
-  }
+  private breakpointObserver = inject(BreakpointObserver);
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    const w = (event.target as Window).innerWidth;
-    this.isOpen = w >= 1024;
+  ngOnInit(): void {
+    this.breakpointObserver
+      .observe(['(min-width: 1024px)'])
+      .subscribe(({ matches }) => {
+        this.isOpen = matches;
+      });
   }
 
   toggleSidebar(): void {
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   closeSidebar(): void {
-    if (window.innerWidth < 1024) {
+    if (!this.breakpointObserver.isMatched('(min-width: 1024px)')) {
       this.isOpen = false;
     }
   }
