@@ -20,7 +20,7 @@ ice-cream-inventory-app/
 ## Prerequisites
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
-- [Node.js](https://nodejs.org/) & npm (v22 or later)
+- [Node.js](https://nodejs.org/) & npm (v20.19+ or v22.12+)
 - [Angular CLI](https://angular.io/cli) v20.x
 - PostgreSQL v12 or later
 
