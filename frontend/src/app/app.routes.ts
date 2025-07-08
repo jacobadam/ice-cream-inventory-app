@@ -11,9 +11,21 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    loadComponent: () =>
-      import('./products/product-list/product-list.component').then(
-        (m) => m.ProductListComponent
-      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./products/product-list/product-list.component').then(
+            (m) => m.ProductListComponent
+          ),
+      },
+      {
+        path: ':id/edit',
+        loadComponent: () =>
+          import('./products/product-list/product-list.component').then(
+            (m) => m.ProductListComponent
+          ),
+      },
+    ],
   },
 ];

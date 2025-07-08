@@ -108,6 +108,6 @@ export class DashboardComponent implements OnInit {
   }
 
   restockProduct(id: number): void {
-    this.router.navigate(['/products'], { queryParams: { edit: id } });
+    this.router.navigate(['products', id, 'edit']);
   }
 }
