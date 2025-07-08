@@ -17,6 +17,9 @@ export class ProductListComponent implements OnInit {
   editingProductId: number | null = null;
   showModal = false;
 
+  productToDelete: Product | null = null;
+  showDeleteDialog = false;
+
   private productService = inject(ProductService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -53,9 +56,23 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number): void {
-    this.productService.delete(id).subscribe(() => {
-      this.loadProducts();
-    });
+    this.productToDelete = this.products.find((p) => p.id === id) || null;
+    this.showDeleteDialog = true;
+  }
+
+  confirmDelete(): void {
+    if (this.productToDelete) {
+      this.productService.delete(this.productToDelete.id).subscribe(() => {
+        this.loadProducts();
+        this.productToDelete = null;
+        this.showDeleteDialog = false;
+      });
+    }
+  }
+
+  cancelDelete(): void {
+    this.productToDelete = null;
+    this.showDeleteDialog = false;
   }
 
   onFormSubmit(): void {
