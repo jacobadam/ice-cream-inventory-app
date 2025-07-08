@@ -38,6 +38,21 @@ export class DashboardComponent implements OnInit {
   public pieOptions: ChartOptions<'pie'> = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Percentage of Total Sales',
+        padding: { top: 8, bottom: 8 },
+      },
+      legend: {
+        position: 'bottom',
+        align: 'center',
+        labels: {
+          usePointStyle: true,
+          padding: 16,
+        },
+      },
+    },
   };
 
   public barType: 'bar' = 'bar';
@@ -45,6 +60,13 @@ export class DashboardComponent implements OnInit {
   public barOptions: ChartOptions<'bar'> = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Units in Stock per Product',
+        padding: { top: 8, bottom: 0 },
+      },
+    },
   };
 
   ngOnInit(): void {
