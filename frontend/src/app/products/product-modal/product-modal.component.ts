@@ -6,7 +6,6 @@ import { ProductFormComponent } from '../product-form/product-form.component';
   standalone: true,
   templateUrl: './product-modal.component.html',
   imports: [ProductFormComponent],
-  styleUrl: './product-modal.component.css',
 })
 export class ProductModalComponent {
   @Output() close = new EventEmitter<void>();

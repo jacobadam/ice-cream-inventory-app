@@ -7,7 +7,6 @@ import { RouterOutlet, RouterModule } from '@angular/router';
   imports: [RouterOutlet, RouterModule, CommonModule],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'ice-cream-inventory';

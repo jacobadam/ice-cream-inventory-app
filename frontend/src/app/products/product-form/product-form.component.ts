@@ -13,7 +13,6 @@ import { Product } from '../product.model';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.css',
 })
 export class ProductFormComponent {
   private fb = inject(FormBuilder);

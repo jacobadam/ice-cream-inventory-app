@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [ProductModalComponent, FormsModule],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
