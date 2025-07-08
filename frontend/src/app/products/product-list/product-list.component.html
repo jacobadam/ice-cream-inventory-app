@@ -1,5 +1,5 @@
-<div class="m-4 p-6 min-h-screen">
-  <div class="overflow-x-auto">
+<div class="min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-7xl m-4 p-6 rounded-2xl">
     <table
       class="min-w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
     >
@@ -161,18 +161,18 @@
         }
       </tbody>
     </table>
-  </div>
 
-  @if (showModal) {
-  <app-product-modal (close)="onFormSubmit()" />
-  }
+    @if (showModal) {
+    <app-product-modal (close)="onFormSubmit()" />
+    }
 
-  <div class="mt-6 text-right">
-    <button
-      class="bg-green-800 text-white px-5 py-2 rounded hover:bg-green-900 transition"
-      (click)="showModal = true"
-    >
-      + Add Product
-    </button>
+    <div class="mt-6 text-right">
+      <button
+        class="flex bg-green-800 text-white px-5 py-2 rounded hover:bg-green-900 transition"
+        (click)="showModal = true"
+      >
+        Add Product
+      </button>
+    </div>
   </div>
 </div>
