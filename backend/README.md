@@ -7,12 +7,12 @@ The backend provides a RESTful API built with .NET 9 Minimal WebAPI and Entity F
 - CRUD endpoints for managing ice cream products
 - Validation using DataAnnotations
 - Global error handling
+- Database seeding on startup
 
 ## Prerequisites
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
 - PostgreSQL v12 or later
-
   - Ensure `psql`, `createdb`, and `dropdb` CLI tools are on your PATH
 
 ## Setup & Run
@@ -23,32 +23,31 @@ The backend provides a RESTful API built with .NET 9 Minimal WebAPI and Entity F
    cd backend
    ```
 
-2. Create the database:
+2. Reset, migrate and seed the database in one step:
 
    ```bash
+   dropdb --if-exists icecream
    createdb icecream
-   ```
-
-3. Set the connection string environment variable:
-
-   ```bash
-   export ICECREAM_DB="Host=localhost;Database=icecream;Username=<your-db-username>;Password=<your-db-password>"
-   ```
-
-4. Apply EF Core migrations and build:
-
-   ```bash
    dotnet build
    dotnet ef database update
-   ```
-
-5. Run the API:
-
-   ```bash
    dotnet run
    ```
 
-The API will listen on:
+   On startup the app will run `SeedData.Initialize(...)` and insert sample products.
+
+3. (Optional) If you need to reseed without rebuilding the app, run the same commands above.
+
+## Environment
+
+Set the connection string environment variable before running:
+
+```bash
+export ICECREAM_DB="Host=localhost;Database=icecream;Username=<your-db-username>;Password=<your-db-password>"
+```
+
+## Listening URLs
+
+By default, the API listens on:
 
 - HTTP: `http://localhost:5000`
 - HTTPS: `https://localhost:5001`
@@ -74,5 +73,5 @@ curl -i http://localhost:5000/api/products
 
 ## Troubleshooting
 
-- **CORS**: Ensure Angular proxy or CORS policy matches frontend URL.
-- **DB Connection**: Verify `ICECREAM_DB` and that the `icecream` database exists.
+- **CORS**: Ensure the Angular frontend is running on `http://localhost:4200` or update the CORS policy.
+- **DB Connection**: Verify `ICECREAM_DB` is set and that the `icecream` database exists.
