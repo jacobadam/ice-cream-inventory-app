@@ -46,7 +46,7 @@ export class ProductListComponent implements OnInit {
     this.productService.update(product).subscribe(() => {
       this.loadProducts();
       this.editingProductId = null;
-      this.location.replaceState('/products');
+      this.router.navigate(['/products'], { replaceUrl: true });
     });
   }
 
