@@ -68,13 +68,3 @@ For detailed frontend setup, build, and deployment, see [frontend/README.md](fro
 - **Database connection issues**: Ensure the `ICECREAM_DB` environment variable is correctly set and the database is created.
 
 ---
-
-## Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
