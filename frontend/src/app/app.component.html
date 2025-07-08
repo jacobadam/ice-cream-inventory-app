@@ -5,7 +5,7 @@
     <div
       class="flex items-center justify-between flex-shrink-0 gap-4 mx-4 py-6 border-b border-gray-200"
     >
-      <a routerLink="/">
+      <a routerLink="/" (click)="closeSidebar()">
         <img src="/home-icon.svg" alt="home" class="w-6 h-6" />
       </a>
       <button
@@ -24,6 +24,7 @@
       routerLink="/dashboard"
       routerLinkActive="text-gray-900 bg-blue-500"
       [routerLinkActiveOptions]="{ exact: true }"
+      (click)="closeSidebar()"
       class="flex items-center gap-3 mx-1 text-sm font-medium py-3 justify-center group-[.is-open]:px-2 group-[.is-open]:justify-start rounded-xl transition-all duration-500 hover:bg-blue-800 whitespace-nowrap mb-4"
     >
       <img src="/dashboard-icon.svg" alt="dashboard" class="w-6 h-6" />
@@ -38,6 +39,7 @@
       routerLink="/products"
       routerLinkActive="text-gray-900 bg-blue-500"
       [routerLinkActiveOptions]="{ exact: true }"
+      (click)="closeSidebar()"
       class="flex items-center gap-3 mx-1 text-sm font-medium py-3 justify-center group-[.is-open]:px-2 group-[.is-open]:justify-start rounded-xl transition-all duration-500 hover:bg-blue-800 whitespace-nowrap mb-4"
     >
       <img src="/stock-icon.svg" alt="stock" class="w-6 h-6" />

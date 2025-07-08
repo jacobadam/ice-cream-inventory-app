@@ -21,4 +21,10 @@ export class AppComponent {
   toggleSidebar(): void {
     this.isOpen = !this.isOpen;
   }
+
+  closeSidebar(): void {
+    if (window.innerWidth < 1024) {
+      this.isOpen = false;
+    }
+  }
 }
