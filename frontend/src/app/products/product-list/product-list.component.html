@@ -2,8 +2,18 @@
   <h1 class="text-2xl font-semibold text-center mb-6">Product List</h1>
 
   <div class="overflow-x-auto">
-    <table class="min-w-full bg-white rounded-lg shadow overflow-hidden">
-      <thead class="bg-gray-100">
+    <table
+      class="min-w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
+    >
+      <colgroup>
+        <col class="w-1/6" />
+        <col class="w-1/6" />
+        <col class="w-1/6" />
+        <col class="w-1/6" />
+        <col class="w-1/6" />
+        <col class="w-1/6" />
+      </colgroup>
+      <thead class="bg-gray-300">
         <tr>
           <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
             Name
@@ -27,76 +37,96 @@
       </thead>
       <tbody>
         @for (product of products; track product.id) {
-        <tr class="border-b border-gray-200 even:bg-gray-50 hover:bg-gray-100">
-          <td class="px-4 py-3 whitespace-nowrap">
+        <tr class="border-b border-gray-200 even:bg-gray-100">
+          <td class="whitespace-nowrap">
             @if (editingProductId === product.id) {
             <input
               type="text"
-              class="w-full px-3 py-1 rounded border border-gray-300"
+              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
               [(ngModel)]="product.name"
               name="name-{{ product.id }}"
             />
             } @else {
-            <span class="text-gray-800">{{ product.name }}</span>
+            <span
+              class="block w-full box-border px-4 py-3 border border-transparent rounded"
+            >
+              {{ product.name }}
+            </span>
             }
           </td>
 
-          <td class="px-4 py-3 whitespace-nowrap">
+          <td class="whitespace-nowrap">
             @if (editingProductId === product.id) {
             <input
               type="text"
-              class="w-full px-3 py-1 rounded border border-gray-300"
+              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
               [(ngModel)]="product.flavor"
               name="flavor-{{ product.id }}"
             />
             } @else {
-            <span class="text-gray-600">{{ product.flavor }}</span>
+            <span
+              class="block w-full box-border px-4 py-3 border border-transparent rounded text-gray-600"
+            >
+              {{ product.flavor }}
+            </span>
             }
           </td>
 
-          <td class="px-4 py-3 whitespace-nowrap text-right">
+          <td class="whitespace-nowrap">
             @if (editingProductId === product.id) {
             <input
               type="number"
-              class="w-24 px-3 py-1 rounded border border-gray-300 text-right"
+              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
               [(ngModel)]="product.price"
               name="price-{{ product.id }}"
               min="0"
             />
             } @else {
-            <span class="text-gray-700">${{ product.price }}</span>
+            <span
+              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+            >
+              ${{ product.price }}
+            </span>
             }
           </td>
 
-          <td class="px-4 py-3 whitespace-nowrap text-right">
+          <td class="whitespace-nowrap">
             @if (editingProductId === product.id) {
             <input
               type="number"
-              class="w-20 px-3 py-1 rounded border border-gray-300 text-right"
+              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
               [(ngModel)]="product.stock"
               name="stock-{{ product.id }}"
               min="0"
             />
             } @else {
-            <span class="text-gray-700">{{ product.stock }}</span>
+            <span
+              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+            >
+              {{ product.stock }}
+            </span>
             }
           </td>
 
-          <td class="px-4 py-3 whitespace-nowrap text-right">
+          <td class="whitespace-nowrap">
             @if (editingProductId === product.id) {
             <input
               type="number"
-              class="w-20 px-3 py-1 rounded border border-gray-300 text-right"
+              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
               [(ngModel)]="product.sold"
               name="sold-{{ product.id }}"
               min="0"
             />
             } @else {
-            <span class="text-gray-700">{{ product.sold }}</span>
+            <span
+              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+            >
+              {{ product.sold }}
+            </span>
             }
           </td>
 
-          <td class="px-4 py-3 whitespace-nowrap text-center space-x-2">
+          <td class="px-4 py-3 text-center space-x-2">
             @if (editingProductId === product.id) {
             <button
               class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
@@ -105,7 +135,7 @@
               Save
             </button>
             <button
-              class="bg-gray-500 text-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
+              class="bg-gray-500 px-3 py-1 rounded hover:bg-gray-600 transition"
               (click)="cancelEdit()"
             >
               Cancel
