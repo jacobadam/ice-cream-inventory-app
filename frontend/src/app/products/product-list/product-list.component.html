@@ -46,7 +46,7 @@
             />
             } @else {
             <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded"
+              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
             >
               {{ product.name }}
             </span>
@@ -63,7 +63,7 @@
             />
             } @else {
             <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded text-gray-600"
+              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
             >
               {{ product.flavor }}
             </span>
@@ -81,7 +81,7 @@
             />
             } @else {
             <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
             >
               ${{ product.price }}
             </span>
@@ -99,7 +99,7 @@
             />
             } @else {
             <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
             >
               {{ product.stock }}
             </span>
@@ -117,7 +117,7 @@
             />
             } @else {
             <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded text-right"
+              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
             >
               {{ product.sold }}
             </span>
@@ -130,26 +130,26 @@
             >
               @if (editingProductId === product.id) {
               <button
-                class="w-full sm:w-auto bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                class="w-full sm:w-auto bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
                 (click)="saveEdit(product)"
               >
                 Save
               </button>
               <button
-                class="w-full sm:w-auto bg-gray-500 px-3 py-1 rounded hover:bg-gray-600 transition"
+                class="w-full sm:w-auto bg-gray-300 px-3 py-1 rounded hover:bg-gray-400 transition"
                 (click)="cancelEdit()"
               >
                 Cancel
               </button>
               } @else {
               <button
-                class="w-full sm:w-auto bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700 transition"
+                class="w-full sm:w-auto bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition"
                 (click)="editProduct(product.id)"
               >
                 Edit
               </button>
               <button
-                class="w-full sm:w-auto bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 transition"
+                class="w-full sm:w-auto bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
                 (click)="deleteProduct(product.id)"
               >
                 Delete
@@ -168,7 +168,7 @@
 
     <div class="mt-6 text-right">
       <button
-        class="flex bg-green-800 text-white px-5 py-2 rounded hover:bg-green-900 transition"
+        class="flex bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition"
         (click)="showModal = true"
       >
         Add Product
@@ -180,7 +180,7 @@
       class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
     >
       <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <h3 class="text-lg font-semibold mb-4">Confirm Delete</h3>
+        <h3 class="text-lg font-medium mb-4">Confirm Delete</h3>
         <p class="mb-6">
           Are you sure you want to delete
           <strong>{{ productToDelete?.name }}</strong
@@ -194,7 +194,7 @@
             Cancel
           </button>
           <button
-            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
             (click)="confirmDelete()"
           >
             Delete
