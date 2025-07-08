@@ -70,6 +70,11 @@ app.UseCors("AllowAngular");
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 
+    
+app.MapGet("/api/error", () =>
+{
+    throw new Exception("Test exception");
+});
 
 app.MapGet("/api/products", async (IceCreamDbContext db) =>
     Results.Ok(await db.Products.OrderBy(p => p.Id).ToListAsync()));
@@ -106,7 +111,7 @@ app.MapPut("/api/products/{id}", async (int id, IceCreamDbContext db, Product up
 {
     var results = new List<ValidationResult>();
     var context = new ValidationContext(updatedProduct);
-    if (!Validator.TryValidateObject(updatedProduct, context,ults, true))
+if (!Validator.TryValidateObject(updatedProduct, context, results, true))
     {
         var errors = results
             .GroupBy(r => r.MemberNames.FirstOrDefault() ?? "")
