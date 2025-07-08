@@ -8,6 +8,7 @@ A full-stack application for managing ice cream products, built with .NET 9 WebA
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
 - [Node.js & npm](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli) v20
 - PostgreSQL v12 or later
 
   - Ensure the `psql`, `createdb`, and `dropdb` CLI tools are on your PATH.
