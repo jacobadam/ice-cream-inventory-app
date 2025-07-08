@@ -1,6 +1,4 @@
 <div class="m-4 p-6 min-h-screen">
-  <h1 class="text-2xl font-semibold text-center mb-6">Product List</h1>
-
   <div class="overflow-x-auto">
     <table
       class="min-w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
@@ -126,34 +124,38 @@
             }
           </td>
 
-          <td class="px-4 py-3 text-center space-x-2">
-            @if (editingProductId === product.id) {
-            <button
-              class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
-              (click)="saveEdit(product)"
+          <td class="px-4 py-3">
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2"
             >
-              Save
-            </button>
-            <button
-              class="bg-gray-500 px-3 py-1 rounded hover:bg-gray-600 transition"
-              (click)="cancelEdit()"
-            >
-              Cancel
-            </button>
-            } @else {
-            <button
-              class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700 transition"
-              (click)="editProduct(product.id)"
-            >
-              Edit
-            </button>
-            <button
-              class="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 transition"
-              (click)="deleteProduct(product.id)"
-            >
-              Delete
-            </button>
-            }
+              @if (editingProductId === product.id) {
+              <button
+                class="w-full sm:w-auto bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                (click)="saveEdit(product)"
+              >
+                Save
+              </button>
+              <button
+                class="w-full sm:w-auto bg-gray-500 px-3 py-1 rounded hover:bg-gray-600 transition"
+                (click)="cancelEdit()"
+              >
+                Cancel
+              </button>
+              } @else {
+              <button
+                class="w-full sm:w-auto bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700 transition"
+                (click)="editProduct(product.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="w-full sm:w-auto bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 transition"
+                (click)="deleteProduct(product.id)"
+              >
+                Delete
+              </button>
+              }
+            </div>
           </td>
         </tr>
         }
