@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
@@ -16,6 +16,12 @@ export class AppComponent {
 
   ngOnInit() {
     this.isOpen = window.innerWidth >= 1024;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const w = (event.target as Window).innerWidth;
+    this.isOpen = w >= 1024;
   }
 
   toggleSidebar(): void {
