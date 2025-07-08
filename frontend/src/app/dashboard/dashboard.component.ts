@@ -28,9 +28,9 @@ export class DashboardComponent implements OnInit {
   inStockCount = 0;
 
   private rankBadges = [
-    '/gold-badge.png',
-    '/silver-badge.png',
-    '/bronze-badge.png',
+    '/gold-medal.png',
+    '/silver-medal.png',
+    '/bronze-medal.png',
   ];
 
   public pieType: 'pie' = 'pie';
