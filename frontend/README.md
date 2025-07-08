@@ -1,59 +1,57 @@
-# IceCreamInventory
+# Frontend README
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+The frontend is an Angular 20 application providing a user interface for managing ice cream inventory.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Product list table with inline edit and delete
+- Modal form for adding products
+- Dashboard with charts, top selling products and low-stock alerts
+- Responsive layout with Tailwind CSS 4
 
-```bash
-ng serve
-```
+## Prerequisites
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Node.js](https://nodejs.org/) & npm (v18 or later)
+- [Angular CLI](https://angular.io/cli) v20.x
 
-## Code scaffolding
+## Setup & Run
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Navigate to the frontend folder:
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   cd frontend
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Install dependencies:
 
-```bash
-ng generate --help
-```
+   ```bash
+   npm install
+   ```
 
-## Building
+3. Start development server:
 
-To build the project run:
+   ```bash
+   npm start
+   ```
 
-```bash
-ng build
-```
+The app will run at `http://localhost:4200`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Configuration
 
-## Running unit tests
+- **API base URL**: In `src/environments/environment.ts`, set `apiUrl` to your backend URL (e.g., `https://localhost:5001/api`).
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Scripts
 
-```bash
-ng test
-```
+| Command       | Description            |
+| ------------- | ---------------------- |
+| `npm install` | Install dependencies   |
+| `npm start`   | Run development server |
 
-## Running end-to-end tests
+## Troubleshooting
 
-For end-to-end (e2e) testing, run:
+- **Port conflicts**: Ensure nothing else runs on port 4200.
+- **API errors**: Verify `apiUrl` matches backend URL and CORS policy allows requests.
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+_End of Frontend README_
