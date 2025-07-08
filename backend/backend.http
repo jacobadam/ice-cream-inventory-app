@@ -1,12 +1,10 @@
-@backend_HostAddress = http://localhost:5000
+@backend_HostAddress = https://localhost:5001
 
 ###
-# Get all products
 GET {{backend_HostAddress}}/api/products
 Accept: application/json
 
 ###
-# Create a bad product (validation error)
 POST {{backend_HostAddress}}/api/products
 Content-Type: application/json
 
@@ -17,5 +15,4 @@ Content-Type: application/json
 }
 
 ###
-# Trigger an unhandled exception (global error handler)
 GET {{backend_HostAddress}}/api/error
