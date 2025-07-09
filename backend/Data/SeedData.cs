@@ -27,8 +27,7 @@ namespace backend.Data
                 new Product { Name = "Salted Pistachio", Flavor = "Pistachio", Price = 5.59M, Stock = 3, Sold = 44 },
                 new Product { Name = "Caramel Velvet", Flavor = "Salted Caramel", Price = 4.69M, Stock = 15, Sold = 52 },
                 new Product { Name = "Coffee Espresso", Flavor = "Coffee", Price = 5.29M, Stock = 3, Sold = 26 },
-                new Product { Name = "Peanut Butter Swirl", Flavor = "Peanut Butter", Price = 5.29M, Stock = 3, Sold = 64 },
-
+                new Product { Name = "Peanut Butter Swirl", Flavor = "Peanut Butter", Price = 5.29M, Stock = 3, Sold = 64 }
             );
 
             context.SaveChanges();
