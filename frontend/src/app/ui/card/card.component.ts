@@ -5,16 +5,19 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   template: `
     <div
-      class="bg-white border border-gray-200 rounded-lg shadow p-5 h-80 overflow-auto"
+      class="bg-white border border-gray-200 rounded-lg shadow p-5 h-80 flex flex-col"
     >
       @if (title) {
-      <h2
-        class="text-center sm:text-left text-sm text-gray-500 uppercase tracking-wide mb-3"
-      >
-        {{ title }}
-      </h2>
+        <h2
+          class="text-center sm:text-left text-sm text-gray-500 uppercase tracking-wide mb-3"
+        >
+          {{ title }}
+        </h2>
       }
-      <ng-content></ng-content>
+
+      <div class="flex-1 flex items-center justify-center overflow-auto">
+        <ng-content></ng-content>
+      </div>
     </div>
   `,
 })
