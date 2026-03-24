@@ -9,13 +9,13 @@ import { Component, Input } from '@angular/core';
     >
       @if (title) {
         <h2
-          class="text-center sm:text-left text-sm text-gray-500 uppercase tracking-wide mb-3"
+          class="text-left text-sm text-gray-500 uppercase tracking-wide mb-3"
         >
           {{ title }}
         </h2>
       }
 
-      <div class="flex-1 flex items-center justify-center overflow-auto">
+      <div class="flex-1 min-h-0 overflow-y-auto">
         <ng-content></ng-content>
       </div>
     </div>
