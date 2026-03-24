@@ -1,4 +1,4 @@
-# Ice Cream Inventory App
+# Ice Cream Inventory
 
 A full-stack application for managing ice cream products, built with .NET 9 WebAPI (PostgreSQL) and Angular 20.
 
@@ -23,7 +23,6 @@ ice-cream-inventory-app/
 - [Node.js](https://nodejs.org/) & npm (v20.19+ or v22.12+)
 - [Angular CLI](https://angular.io/cli) v20.x
 - PostgreSQL v12 or later
-
   - Ensure the `psql`, `createdb`, and `dropdb` CLI tools are on your PATH.
 
 ---
