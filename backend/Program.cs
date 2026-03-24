@@ -21,18 +21,19 @@ builder.Services.AddOpenApi();
 var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
 if (string.IsNullOrWhiteSpace(databaseUrl))
-    throw new Exception("Database connection string not set.");
+    throw new Exception("DATABASE_URL not set.");
 
-var databaseUri = new Uri(databaseUrl);
-var userInfo = databaseUri.UserInfo.Split(':', 2);
+var uri = new Uri(databaseUrl);
+
+var userInfo = uri.UserInfo.Split(':');
 
 var connectionString =
-    $"Host={databaseUri.Host};" +
-    $"Port={databaseUri.Port};" +
-    $"Database={databaseUri.AbsolutePath.TrimStart('/')};" +
+    $"Host={uri.Host};" +
+    $"Port={uri.Port};" +
+    $"Database={uri.AbsolutePath.TrimStart('/')};" +
     $"Username={userInfo[0]};" +
     $"Password={userInfo[1]};" +
-    "SSL Mode=Require;Trust Server Certificate=true";
+    $"SSL Mode=Require;Trust Server Certificate=true";
 
 builder.Services.AddDbContext<IceCreamDbContext>(options =>
     options.UseNpgsql(connectionString));
