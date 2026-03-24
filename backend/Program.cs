@@ -92,6 +92,7 @@ app.UseCors("AllowAngular");
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 
+app.MapGet("/", () => Results.Ok("Ice Cream Inventory API is running."));
     
 app.MapGet("/api/error", () =>
 {
