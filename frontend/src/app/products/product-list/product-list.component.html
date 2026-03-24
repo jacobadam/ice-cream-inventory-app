@@ -1,178 +1,180 @@
-<div class="min-h-screen flex items-center justify-center p-6">
-  <div class="w-full max-w-7xl m-4 p-6 rounded-2xl">
+<div class="min-h-screen flex items-center justify-center p-2">
+  <div class="w-full max-w-7xl m-4 p-2 rounded-xl">
     @if (errorMessage) {
-    <div class="mb-4 px-4 py-2 bg-red-100 text-red-700 rounded">
-      {{ errorMessage }}
-    </div>
+      <div class="mb-4 px-4 py-2 bg-red-100 text-red-700 rounded">
+        {{ errorMessage }}
+      </div>
     }
 
-    <table
-      class="min-w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
-    >
-      <colgroup>
-        <col class="w-1/6" />
-        <col class="w-1/6" />
-        <col class="w-1/6" />
-        <col class="w-1/6" />
-        <col class="w-1/6" />
-        <col class="w-1/6" />
-      </colgroup>
-      <thead class="bg-gray-300">
-        <tr>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
-            Name
-          </th>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
-            Flavor
-          </th>
-          <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
-            Price
-          </th>
-          <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
-            Stock
-          </th>
-          <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
-            Sold
-          </th>
-          <th class="px-4 py-2 text-center text-sm font-medium text-gray-600">
-            Actions
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (product of products; track product.id) {
-        <tr class="border-b border-gray-200 even:bg-gray-100">
-          <td class="whitespace-nowrap">
-            @if (editingProductId === product.id) {
-            <input
-              type="text"
-              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
-              [(ngModel)]="product.name"
-              name="name-{{ product.id }}"
-            />
-            } @else {
-            <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
-            >
-              {{ product.name }}
-            </span>
-            }
-          </td>
+    <div class="overflow-x-auto">
+      <table
+        class="min-w-[720px] w-full table-fixed bg-white rounded-lg shadow overflow-hidden"
+      >
+        <colgroup>
+          <col class="w-1/6" />
+          <col class="w-1/6" />
+          <col class="w-1/6" />
+          <col class="w-1/6" />
+          <col class="w-1/6" />
+          <col class="w-1/6" />
+        </colgroup>
+        <thead class="bg-gray-300">
+          <tr>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+              Name
+            </th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">
+              Flavor
+            </th>
+            <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
+              Price
+            </th>
+            <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
+              Stock
+            </th>
+            <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">
+              Sold
+            </th>
+            <th class="px-4 py-2 text-center text-sm font-medium text-gray-600">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track product.id) {
+            <tr class="border-b border-gray-200 even:bg-gray-100">
+              <td class="whitespace-nowrap">
+                @if (editingProductId === product.id) {
+                  <input
+                    type="text"
+                    class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
+                    [(ngModel)]="product.name"
+                    name="name-{{ product.id }}"
+                  />
+                } @else {
+                  <span
+                    class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
+                  >
+                    {{ product.name }}
+                  </span>
+                }
+              </td>
 
-          <td class="whitespace-nowrap">
-            @if (editingProductId === product.id) {
-            <input
-              type="text"
-              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
-              [(ngModel)]="product.flavor"
-              name="flavor-{{ product.id }}"
-            />
-            } @else {
-            <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
-            >
-              {{ product.flavor }}
-            </span>
-            }
-          </td>
+              <td class="whitespace-nowrap">
+                @if (editingProductId === product.id) {
+                  <input
+                    type="text"
+                    class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded"
+                    [(ngModel)]="product.flavor"
+                    name="flavor-{{ product.id }}"
+                  />
+                } @else {
+                  <span
+                    class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium"
+                  >
+                    {{ product.flavor }}
+                  </span>
+                }
+              </td>
 
-          <td class="whitespace-nowrap">
-            @if (editingProductId === product.id) {
-            <input
-              type="number"
-              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
-              [(ngModel)]="product.price"
-              name="price-{{ product.id }}"
-              min="0"
-            />
-            } @else {
-            <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
-            >
-              ${{ product.price }}
-            </span>
-            }
-          </td>
+              <td class="whitespace-nowrap">
+                @if (editingProductId === product.id) {
+                  <input
+                    type="number"
+                    class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
+                    [(ngModel)]="product.price"
+                    name="price-{{ product.id }}"
+                    min="0"
+                  />
+                } @else {
+                  <span
+                    class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
+                  >
+                    ${{ product.price }}
+                  </span>
+                }
+              </td>
 
-          <td class="whitespace-nowrap">
-            @if (editingProductId === product.id) {
-            <input
-              type="number"
-              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
-              [(ngModel)]="product.stock"
-              name="stock-{{ product.id }}"
-              min="0"
-            />
-            } @else {
-            <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
-            >
-              {{ product.stock }}
-            </span>
-            }
-          </td>
+              <td class="whitespace-nowrap">
+                @if (editingProductId === product.id) {
+                  <input
+                    type="number"
+                    class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
+                    [(ngModel)]="product.stock"
+                    name="stock-{{ product.id }}"
+                    min="0"
+                  />
+                } @else {
+                  <span
+                    class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
+                  >
+                    {{ product.stock }}
+                  </span>
+                }
+              </td>
 
-          <td class="whitespace-nowrap">
-            @if (editingProductId === product.id) {
-            <input
-              type="number"
-              class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
-              [(ngModel)]="product.sold"
-              name="sold-{{ product.id }}"
-              min="0"
-            />
-            } @else {
-            <span
-              class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
-            >
-              {{ product.sold }}
-            </span>
-            }
-          </td>
+              <td class="whitespace-nowrap">
+                @if (editingProductId === product.id) {
+                  <input
+                    type="number"
+                    class="block w-full box-border px-4 py-3 border border-gray-300 bg-white rounded text-right"
+                    [(ngModel)]="product.sold"
+                    name="sold-{{ product.id }}"
+                    min="0"
+                  />
+                } @else {
+                  <span
+                    class="block w-full box-border px-4 py-3 border border-transparent rounded font-medium text-right"
+                  >
+                    {{ product.sold }}
+                  </span>
+                }
+              </td>
 
-          <td class="px-4 py-3">
-            <div
-              class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2"
-            >
-              @if (editingProductId === product.id) {
-              <button
-                class="w-full sm:w-auto bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
-                (click)="saveEdit(product)"
-              >
-                Save
-              </button>
-              <button
-                class="w-full sm:w-auto bg-gray-300 px-3 py-1 rounded hover:bg-gray-400 transition"
-                (click)="cancelEdit()"
-              >
-                Cancel
-              </button>
-              } @else {
-              <button
-                class="w-full sm:w-auto bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition"
-                (click)="editProduct(product.id)"
-              >
-                Edit
-              </button>
-              <button
-                class="w-full sm:w-auto bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-                (click)="deleteProduct(product.id)"
-              >
-                Delete
-              </button>
-              }
-            </div>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+              <td class="px-4 py-3">
+                <div
+                  class="flex flex-col sm:flex-row items-center justify-center gap-2"
+                >
+                  @if (editingProductId === product.id) {
+                    <button
+                      class="w-full sm:w-auto bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
+                      (click)="saveEdit(product)"
+                    >
+                      Save
+                    </button>
+                    <button
+                      class="w-full sm:w-auto bg-gray-300 px-3 py-1 rounded hover:bg-gray-400 transition"
+                      (click)="cancelEdit()"
+                    >
+                      Cancel
+                    </button>
+                  } @else {
+                    <button
+                      class="w-full sm:w-auto bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition"
+                      (click)="editProduct(product.id)"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="w-full sm:w-auto bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                      (click)="deleteProduct(product.id)"
+                    >
+                      Delete
+                    </button>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
 
     @if (showModal) {
-    <app-product-modal (close)="onFormSubmit()" />
+      <app-product-modal (close)="onFormSubmit()" />
     }
 
-    <div class="mt-6 text-right">
+    <div class="mt-3 text-right">
       <button
         class="flex bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition"
         (click)="showModal = true"
@@ -182,32 +184,32 @@
     </div>
 
     @if (showDeleteDialog) {
-    <div
-      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-    >
-      <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <h3 class="text-lg font-medium mb-4">Confirm Delete</h3>
-        <p class="mb-6">
-          Are you sure you want to delete
-          <strong>{{ productToDelete?.name }}</strong
-          >?
-        </p>
-        <div class="flex justify-end gap-2">
-          <button
-            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-            (click)="cancelDelete()"
-          >
-            Cancel
-          </button>
-          <button
-            class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-            (click)="confirmDelete()"
-          >
-            Delete
-          </button>
+      <div
+        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      >
+        <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
+          <h3 class="text-lg font-medium mb-4">Confirm Delete</h3>
+          <p class="mb-6">
+            Are you sure you want to delete
+            <strong>{{ productToDelete?.name }}</strong
+            >?
+          </p>
+          <div class="flex justify-end gap-2">
+            <button
+              class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              (click)="cancelDelete()"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              (click)="confirmDelete()"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     }
   </div>
 </div>
