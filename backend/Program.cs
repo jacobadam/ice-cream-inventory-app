@@ -18,9 +18,21 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddOpenApi();
 
-var connectionString = Environment.GetEnvironmentVariable("ICECREAM_DB");
-if (string.IsNullOrWhiteSpace(connectionString))
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+if (string.IsNullOrWhiteSpace(databaseUrl))
     throw new Exception("Database connection string not set.");
+
+var databaseUri = new Uri(databaseUrl);
+var userInfo = databaseUri.UserInfo.Split(':', 2);
+
+var connectionString =
+    $"Host={databaseUri.Host};" +
+    $"Port={databaseUri.Port};" +
+    $"Database={databaseUri.AbsolutePath.TrimStart('/')};" +
+    $"Username={userInfo[0]};" +
+    $"Password={userInfo[1]};" +
+    "SSL Mode=Require;Trust Server Certificate=true";
 
 builder.Services.AddDbContext<IceCreamDbContext>(options =>
     options.UseNpgsql(connectionString));
