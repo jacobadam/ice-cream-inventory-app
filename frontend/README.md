@@ -1,6 +1,6 @@
 # Frontend README
 
-The frontend is an Angular 20 application providing a user interface for managing ice cream inventory.
+The frontend is an Angular 21 application providing a user interface for managing ice cream inventory.
 
 ## Features
 
@@ -11,47 +11,106 @@ The frontend is an Angular 20 application providing a user interface for managin
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) & npm (v20.19+ or v22.12+)
-- [Angular CLI](https://angular.io/cli) v20.x
+- Node.js (v20.19+ or v22.12+)
+- Angular CLI v21.x
 
-## Setup & Run
+## Setup & Run (Local)
 
 1. Navigate to the frontend folder:
 
-   ```bash
    cd frontend
-   ```
 
 2. Install dependencies:
 
-   ```bash
    npm install
-   ```
 
 3. Start development server:
 
-   ```bash
    npm start
-   ```
 
-The app will run at `http://localhost:4200`.
+The app runs at:
+
+```
+http://localhost:4200
+```
 
 ## Configuration
 
-- **API base URL**: In `src/environments/environment.ts`, set `apiUrl` to your backend URL (e.g., `https://localhost:5001/api`).
+### Environment files
+
+Angular uses environment-based configuration:
+
+- src/environments/environment.ts (development)
+- src/environments/environment.prod.ts (production)
+
+Example:
+
+Development:
+
+```
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:5000/api',
+};
+```
+
+Production:
+
+```
+export const environment = {
+  production: true,
+  apiUrl: 'https://ice-cream-inventory-api-4aedcf1094a7.herokuapp.com/api',
+};
+```
+
+Angular automatically replaces environment files during production builds.
+
+## Build
+
+```
+npm run build
+```
+
+This runs:
+
+```
+ng build --configuration production
+```
+
+## Deployment (Netlify)
+
+The frontend is deployed on Netlify.
+
+- Build command:
+
+  npm run build
+
+- Publish directory:
+
+  dist/ice-cream-inventory/browser
+
+The production build connects to the Heroku API.
+
+## Live App
+
+https://icecreaminventory.netlify.app
 
 ## Scripts
 
-| Command       | Description            |
-| ------------- | ---------------------- |
-| `npm install` | Install dependencies   |
-| `npm start`   | Run development server |
+- npm install: Install dependencies
+- npm start: Run development server
+- npm run build: Production build
 
 ## Troubleshooting
 
-- **Port conflicts**: Ensure nothing else runs on port 4200.
-- **API errors**: Verify `apiUrl` matches backend URL and CORS policy allows requests.
+- API errors:
+  - Check correct environment file is used
+  - Verify API URL matches backend
+  - Ensure backend CORS allows Netlify domain
 
----
+- Still calling localhost in production:
+  - Check angular.json fileReplacements
+  - Ensure correct environment import is used
 
-_End of Frontend README_
+- CORS errors:
+  - Ensure backend includes Netlify domain in WithOrigins(...)
