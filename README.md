@@ -87,13 +87,15 @@ Local development:
 
 - Frontend -> http://localhost:4200
 - Backend -> http://localhost:5000
-- Database -> Local PostgreSQL
+- Database -> Local PostgreSQL (icecream)
+- Env var -> ICECREAM_DB
 
 Production:
 
 - Frontend -> Netlify
 - Backend -> Heroku
-- Database -> Heroku Postgres
+- Database -> Heroku Postgres (managed via DATABASE_URL)
+- Env var -> DATABASE_URL
 
 ---
 
@@ -129,5 +131,3 @@ Frontend:
 - Still calling localhost in production:
   - Check environment import path
   - Confirm Netlify rebuilt after changes
-
----
