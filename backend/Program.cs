@@ -19,25 +19,34 @@ builder.Services.AddCors(options =>
 builder.Services.AddOpenApi();
 
 var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+var localConnectionString = Environment.GetEnvironmentVariable("ICECREAM_DB");
 
-if (string.IsNullOrWhiteSpace(databaseUrl))
-    throw new Exception("DATABASE_URL not set.");
+string connectionString;
 
-var uri = new Uri(databaseUrl);
+if (!string.IsNullOrWhiteSpace(databaseUrl))
+{
+    var databaseUri = new Uri(databaseUrl);
+    var userInfo = databaseUri.UserInfo.Split(':', 2);
 
-var userInfo = uri.UserInfo.Split(':');
-
-var connectionString =
-    $"Host={uri.Host};" +
-    $"Port={uri.Port};" +
-    $"Database={uri.AbsolutePath.TrimStart('/')};" +
-    $"Username={userInfo[0]};" +
-    $"Password={userInfo[1]};" +
-    $"SSL Mode=Require;Trust Server Certificate=true";
+    connectionString =
+        $"Host={databaseUri.Host};" +
+        $"Port={databaseUri.Port};" +
+        $"Database={databaseUri.AbsolutePath.TrimStart('/')};" +
+        $"Username={userInfo[0]};" +
+        $"Password={userInfo[1]};" +
+        "SSL Mode=Require;Trust Server Certificate=true";
+}
+else if (!string.IsNullOrWhiteSpace(localConnectionString))
+{
+    connectionString = localConnectionString;
+}
+else
+{
+    throw new Exception("No database connection string found. Set DATABASE_URL or ICECREAM_DB.");
+}
 
 builder.Services.AddDbContext<IceCreamDbContext>(options =>
     options.UseNpgsql(connectionString));
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
